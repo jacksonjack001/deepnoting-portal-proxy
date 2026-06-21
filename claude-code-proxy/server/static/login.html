@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Claude Account</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --line: #dfe5ee;
+      --text: #152238;
+      --muted: #66768f;
+      --green: #1f8f4d;
+      --green-soft: #e9f7ee;
+      --blue: #2b65d9;
+      --blue-soft: #eef4ff;
+      --warning: #a35a00;
+      --warning-soft: #fff5e8;
+      --shadow: 0 24px 60px rgba(18, 37, 63, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(31, 143, 77, 0.14), transparent 26%),
+        radial-gradient(circle at top right, rgba(43, 101, 217, 0.12), transparent 22%),
+        var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(760px, 100%);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.05;
+    }
+
+    .brand p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 10px 14px;
+      border: 1px solid #bfe6cb;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px;
+      background: #fbfcfe;
+    }
+
+    .panel h2 {
+      margin: 0 0 14px;
+      font-size: 18px;
+    }
+
+    .panel p,
+    .panel li,
+    .panel label {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    ol {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .field {
+      margin: 18px 0 0;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .field input {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      padding: 14px 16px;
+      font-size: 15px;
+      color: var(--text);
+      background: #fff;
+    }
+
+    .field input:focus {
+      outline: 2px solid rgba(43, 101, 217, 0.18);
+      border-color: var(--blue);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      appearance: none;
+      border: 0;
+      border-radius: 14px;
+      padding: 13px 18px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button.primary {
+      color: #fff;
+      background: linear-gradient(135deg, #1f8f4d, #15713b);
+      box-shadow: 0 12px 24px rgba(31, 143, 77, 0.22);
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .note {
+      border-radius: 18px;
+      background: var(--warning-soft);
+      color: var(--warning);
+      border: 1px solid #f2d2a7;
+      padding: 16px;
+      font-size: 14px;
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+
+    .hint {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    code {
+      padding: 2px 7px;
+      border-radius: 8px;
+      background: #f1f4f8;
+      color: #1d3557;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 13px;
+    }
+
+    @media (max-width: 760px) {
+      .card {
+        padding: 24px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brand {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="brand">
+      <div>
+        <h1>Add a Claude Account</h1>
+        <p>Authenticate a new Claude subscription account, then return to the dashboard to switch accounts and inspect the 5-hour / 7-day quota windows.</p>
+      </div>
+      <div class="badge">OAuth Setup</div>
+    </div>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Step-by-step</h2>
+        <ol>
+          <li>Choose an account label so the dashboard can distinguish this subscription.</li>
+          <li>Open the Claude authorization page in a new tab and approve the login.</li>
+          <li>Copy the final <code>code#state</code> value shown by Claude.</li>
+          <li>Paste it below to finish linking the account.</li>
+        </ol>
+
+        <div class="field">
+          <label for="labelInput">Account label</label>
+          <input
+            id="labelInput"
+            type="text"
+            maxlength="80"
+            placeholder="Example: Personal Max / Team Seat / Backup Account"
+          >
+        </div>
+
+        <div class="actions">
+          <button class="button primary" id="authButton" type="button">Open Authorization Page</button>
+          <a class="button secondary" href="/dashboard" style="text-decoration:none;display:inline-flex;align-items:center;">Back to Dashboard</a>
+        </div>
+
+        <div class="hint">The label only affects local account management in this proxy. It is not sent to Anthropic.</div>
+      </section>
+
+      <section class="panel">
+        <h2>Finish linking</h2>
+        <form action="/auth/callback" method="GET">
+          <div class="field">
+            <label for="codeInput">Authorization code</label>
+            <input
+              id="codeInput"
+              name="manual_code"
+              type="text"
+              placeholder="Paste code#state here"
+              required
+            >
+          </div>
+          <div class="actions">
+            <button class="button primary" type="submit">Submit Code</button>
+          </div>
+        </form>
+
+        <div class="note">
+          Copy the full value exactly as shown, including the <code>#</code> separator. This proxy stores the resulting OAuth tokens locally and uses them for quota probing plus proxied Claude requests.
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const initialLabel = params.get('label');
+    if (initialLabel) {
+      document.getElementById('labelInput').value = initialLabel;
+    }
+
+    document.getElementById('authButton').addEventListener('click', async () => {
+      const label = document.getElementById('labelInput').value.trim();
+      const suffix = label ? `?label=${encodeURIComponent(label)}` : '';
+      const response = await fetch(`/auth/get-url${suffix}`);
+      const data = await response.json();
+
+      if (data.url) {
+        window.open(data.url, '_blank', 'noopener,noreferrer');
+      }
+    });
+  </script>
+</body>
+</html>
